@@ -1,28 +1,28 @@
 <template>
-  <div class="food-gallery">
-    <h1>Recipes</h1>
-    <div class="food-search">
-      <input type="text" v-model="searchText" placeholder="Search recipes...">
+  <div>
+    <div class="food-button">
+      <h1>Recipes</h1>
+      <div class="food-search">
+        <input type="text" v-model="searchText" placeholder="Search recipes...">
+      </div>
+      <div class="food-sort">
+        <button id="sort-button" @click="sortRecipes">Sort</button>
+      </div>
     </div>
-    <div class="food-sort">
-      <button id="sort-button" @click="sortRecipes">Sort</button>
+    <div class="food-gallery">
+      <food-card v-for="recipe in filteredRecipes" :key="recipe.id" :recipe="recipe" @show-recipe="showRecipe" />
     </div>
-    <ul class="food-list">
-      <li v-for="recipe in filteredRecipes" :key="recipe.id" @click="showRecipe(recipe)">
-        <div class="food-card">
-          <img :src="recipe.image">
-          <h2>{{ recipe.title }}</h2>
-        </div>
-      </li>
-    </ul>
   </div>
 </template>
 
-
 <script>
+import FoodCard from '@/components/FoodCard.vue';
+
 export default {
   name: 'FoodGallery',
-
+  components: {
+    FoodCard
+  },
   data() {
     return {
       recipes: [],
@@ -33,7 +33,7 @@ export default {
   },
 
   created() {
-    const apiKey = '9a40450300614f6ab2d0a10f70ce5ea3';
+    const apiKey = '4cf608d45f50467da410ce667d0b16d2';
     const pastaUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=pasta`;
     const pizzaUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=pizza`;
 
@@ -72,7 +72,7 @@ export default {
 
   methods: {
     showRecipe(recipe) {
-      const apiKey = '9a40450300614f6ab2d0a10f70ce5ea3';
+      const apiKey = '4cf608d45f50467da410ce667d0b16d2';
       const recipeUrl = `https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=${apiKey}`;
 
       fetch(recipeUrl)
@@ -95,24 +95,34 @@ export default {
     },
   }
 }
-
-
 </script>
 
 
 <style scoped>
 
-h1{
-  font-family: 'Roboto', sans-serif;
-  color : mediumseagreen;
-}
 .food-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+  width: 70%;
+  margin: auto;
+}
+
+.food-button {
   display: flex;
   flex-direction: column;
   align-items: center;
   width:70%;
   margin:auto;
 }
+
+
+h1{
+  font-family: 'Roboto', sans-serif;
+  color : mediumseagreen;
+}
+
 
 .food-search {
   align-self:flex-start;
@@ -132,38 +142,6 @@ h1{
 .food-search input::placeholder {
   color:green;
   font-size:10pt;
-}
-
-.food-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.food-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.food-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  margin-bottom: 1rem;
-}
-
-.food-card h2 {
-  font-family: 'Roboto', sans-serif;
-  color : mediumseagreen;
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: bold;
 }
 
 
@@ -203,4 +181,3 @@ h1{
 
 
 </style>
-

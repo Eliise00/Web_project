@@ -1,13 +1,13 @@
 <template>
   <footer class="footer">
-      <div class="left">
-        <h3>PastaBook</h3>
-      </div>
-      <div class="center">
-        <a href="#">Home</a>
-        <a href="#">Discover</a>
-        <a href="#">Tips</a>
-      </div>
+    <div class="left">
+      <h3>PastaBook</h3>
+    </div>
+    <div class="center">
+      <a href="#">Home</a>
+      <a href="#">Discover</a>
+      <a href="#">Tips</a>
+    </div>
   </footer>
 </template>
 
