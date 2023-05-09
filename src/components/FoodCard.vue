@@ -1,7 +1,7 @@
 <template>
   <ul class="food-list">
     <li @click="showRecipe">
-      <div class="food-card">
+      <div class="food-card" @click="$emit('show-recipe', recipe)" v-if="!isFiltered">>
         <img :src="recipe.image" alt="food-image" />
         <h2>{{ recipe.title }}</h2>
       </div>
@@ -16,7 +16,19 @@ export default {
       type: Object,
       required: true,
     },
+
+    filteredRecipes: {
+      type: Array,
+      required: true
+    }
   },
+
+  computed: {
+    isFiltered() {
+      return !this.filteredRecipes.includes(this.recipe);
+    }
+  },
+
   methods: {
     showRecipe() {
       this.$emit("show-recipe", this.recipe);

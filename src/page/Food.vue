@@ -2,13 +2,11 @@
   <div>
     <div class="food-button">
       <h1>Recipes</h1>
-      <div class="food-search">
-        <input type="text" v-model="searchText" placeholder="Search recipes...">
-      </div>
+      <food-search :searchText="searchText" @update:searchText="searchText = $event"></food-search>
       <food-sort :sort-order="sortOrder" @sort-recipes="sortRecipes" />
     </div>
     <div class="food-gallery">
-      <food-card v-for="recipe in filteredRecipes" :key="recipe.id" :recipe="recipe" @show-recipe="showRecipe" />
+      <food-card v-for="recipe in filteredRecipes" :key="recipe.id" :recipe="recipe" @show-recipe="showRecipe" :filteredRecipes="filteredRecipes" />
     </div>
   </div>
 </template>
@@ -16,12 +14,14 @@
 <script>
 import FoodCard from '@/components/FoodCard.vue';
 import FoodSort from '@/components/FoodSort.vue';
+import FoodSearch from "@/components/FoodSearch.vue";
 
 export default {
   name: 'FoodGallery',
   components: {
     FoodCard,
-    FoodSort
+    FoodSort,
+    FoodSearch
   },
   data() {
     return {
@@ -93,6 +93,10 @@ export default {
         this.sortOrder = 'asc';
       }
     },
+
+    handleSearch(searchText) {
+      this.searchText = searchText;
+    },
   }
 }
 </script>
@@ -121,26 +125,6 @@ export default {
 h1{
   font-family: 'Roboto', sans-serif;
   color : mediumseagreen;
-}
-
-.food-search {
-  align-self:flex-start;
-  margin-left:2rem;
-}
-
-.food-search input {
-  background-color: antiquewhite;
-  border: none;
-  border-radius: 20px;
-  width: 100%;
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
-  margin: 2rem 0;
-  outline: none;
-}
-.food-search input::placeholder {
-  color:green;
-  font-size:10pt;
 }
 
 </style>
