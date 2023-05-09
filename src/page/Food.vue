@@ -5,9 +5,7 @@
       <div class="food-search">
         <input type="text" v-model="searchText" placeholder="Search recipes...">
       </div>
-      <div class="food-sort">
-        <button id="sort-button" @click="sortRecipes">Sort</button>
-      </div>
+      <food-sort :sort-order="sortOrder" @sort-recipes="sortRecipes" />
     </div>
     <div class="food-gallery">
       <food-card v-for="recipe in filteredRecipes" :key="recipe.id" :recipe="recipe" @show-recipe="showRecipe" />
@@ -17,11 +15,13 @@
 
 <script>
 import FoodCard from '@/components/FoodCard.vue';
+import FoodSort from '@/components/FoodSort.vue';
 
 export default {
   name: 'FoodGallery',
   components: {
-    FoodCard
+    FoodCard,
+    FoodSort
   },
   data() {
     return {
@@ -123,7 +123,6 @@ h1{
   color : mediumseagreen;
 }
 
-
 .food-search {
   align-self:flex-start;
   margin-left:2rem;
@@ -143,41 +142,5 @@ h1{
   color:green;
   font-size:10pt;
 }
-
-
-.food-sort   {
-  align-self:flex-end;
-}
-
-#sort-button {
-  background-color: antiquewhite;
-  border: none;
-  border-radius: 5px;
-  width: 130%;
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
-  margin: 2rem 0;
-  outline: none;
-  color: mediumseagreen;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  position: relative;
-}
-
-#sort-button::after {
-  content: "";
-  position: absolute;
-  top: calc(50% - 5px);
-  left: 70px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid mediumseagreen;
-}
-
-#sort-button:hover {
-  background-color: mediumseagreen;
-  color: antiquewhite;
-}
-
 
 </style>
