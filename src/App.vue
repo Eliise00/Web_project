@@ -1,8 +1,6 @@
 <template>
   <HeaderRecipe></HeaderRecipe>
-  <div className="food-search">
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
   <FooterRecipe></FooterRecipe>
 </template>
 
@@ -12,7 +10,6 @@ import HeaderRecipe from "@/components/Header.vue";
 import FooterRecipe from "@/components/Footer.vue";
 
 export default {
-  name: 'FoodSearch',
   components: {
     HeaderRecipe,
     FooterRecipe,
