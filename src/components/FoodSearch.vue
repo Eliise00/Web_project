@@ -24,7 +24,6 @@ export default {
 <style scoped>
 .food-search {
   align-self:flex-start;
-  margin-left:2rem;
 }
 
 .food-search input {

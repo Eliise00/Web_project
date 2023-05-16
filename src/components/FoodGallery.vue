@@ -1,9 +1,11 @@
 <template>
   <div>
-    <div class="food-button">
+    <div class="food-element">
       <h1>Recipes</h1>
-      <food-search :searchText="searchText" @update:searchText="searchText = $event"></food-search>
-      <food-sort :sort-order="sortOrder" @sort-recipes="sortRecipes" />
+      <div class="food-button">
+        <food-search :searchText="searchText" @update:searchText="searchText = $event"></food-search>
+        <food-sort :sort-order="sortOrder" @sort-recipes="sortRecipes" />
+      </div>
     </div>
     <div class="food-gallery">
       <food-card v-for="recipe in filteredRecipes" :key="recipe.id" :recipe="recipe" @show-recipe="showRecipe" :filteredRecipes="filteredRecipes" />
@@ -103,17 +105,7 @@ export default {
 
 <style scoped>
 
-
-.food-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-template-rows: auto;
-  grid-gap: 2rem;
-  width: 70%;
-  margin: auto;
-}
-
-.food-button {
+.food-element {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,5 +118,23 @@ h1{
   font-family: 'Roboto', sans-serif;
   color : mediumseagreen;
 }
+
+
+.food-button {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.food-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+  width: 70%;
+  margin: auto;
+  flex: 1;
+}
+
 
 </style>

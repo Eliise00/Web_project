@@ -1,8 +1,8 @@
 <template>
   <ul class="food-list">
     <li @click="showRecipe">
-      <div class="food-card" @click="$emit('show-recipe', recipe)" v-if="!isFiltered">>
-        <img :src="recipe.image" alt="food-image" />
+      <div class="food-card" @click="$emit('show-recipe', recipe)" v-if="!isFiltered">
+        <img :src="recipe.image" alt="food-image"/>
         <h2>{{ recipe.title }}</h2>
       </div>
     </li>
@@ -53,11 +53,11 @@ export default {
   align-items: center;
   justify-content: center;
   text-align: center;
+  height: 100%;
 }
 
 .food-card img {
   width: 100%;
-  height: 150px;
   object-fit: cover;
   margin-bottom: 1rem;
 }
@@ -70,9 +70,5 @@ export default {
   font-weight: bold;
 }
 
-.food-card p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-}
+
 </style>

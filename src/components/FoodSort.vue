@@ -1,8 +1,6 @@
 <template>
-  <div class="food-button">
-    <div class="food-sort">
-      <button id="sort-button" @click="$emit('sort-recipes')">{{ sortOrder === 'asc' ? 'Sort ASC' : 'Sort DESC' }}</button>
-    </div>
+  <div class="food-sort">
+    <button id="sort-button" @click="$emit('sort-recipes')">{{ sortOrder === 'asc' ? 'Sort ASC' : 'Sort DESC' }}</button>
   </div>
 </template>
 
@@ -22,15 +20,14 @@ export default {
 <style scoped>
 
 
-.food-sort   {
-  align-self:flex-end;
+.food-sort {
+  align-self: flex-end;
 }
 
 #sort-button {
   background-color: antiquewhite;
   border: none;
   border-radius: 5px;
-  width: 130%;
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
   margin: 2rem 0;

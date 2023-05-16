@@ -1,7 +1,9 @@
 <template>
-  <HeaderRecipe></HeaderRecipe>
-  <router-view></router-view>
-  <FooterRecipe></FooterRecipe>
+  <div class="app-container">
+    <HeaderRecipe></HeaderRecipe>
+    <router-view></router-view>
+    <FooterRecipe></FooterRecipe>
+  </div>
 </template>
 
 <script>
@@ -20,6 +22,12 @@ export default {
 <style>
 body {
   margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 </style>
